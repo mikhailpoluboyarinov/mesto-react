@@ -7,8 +7,8 @@ import Card from "./Card";
 export default function Main(props) {
     const { onEditProfile, onAddPlace, onEditAvatar, onCardClick } = props;
 
-    const [userName, setUserName] = useState();
-    const [userDescription, setUserDescription ] = useState();
+    const [userName, setUserName] = useState('');
+    const [userDescription, setUserDescription ] = useState('');
     const [userAvatar, setUserAvatar] = useState(avatarProfile);
     const [cards, setCards] = useState([]);
 
@@ -17,13 +17,17 @@ export default function Main(props) {
             setUserName(data.name);
             setUserDescription(data.about);
             setUserAvatar(data.avatar);
+        }).catch((err) => {
+            console.log(err);
         });
     }, []);
 
     useEffect(() => {
         api.getInitialCards().then((data) => {
             setCards(data);
-        })
+        }).catch((err) => {
+            console.log(err);
+        });
     }, []);
 
     return (
