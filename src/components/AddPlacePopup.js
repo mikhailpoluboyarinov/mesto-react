@@ -42,13 +42,13 @@ export function AddPlacePopup (props) {
         >
             <label className="form__field">
                 <input className="popup__input form__input form__input_type_place" id="place-input"
-                       type="text" name="name-of-place" placeholder="Название" value={name} minLength="2"
+                       type="text" name="name-of-place" placeholder="Название" value={name || ''} minLength="2"
                        maxLength="30" required onChange={handleChangeName}/>
                 <span className="form__error place-input-error popup__error"></span>
             </label>
             <label className="form__field">
                 <input className="popup__input form__input form__input_type_link" id="link-input" type="url"
-                       name="link" placeholder="Ссылка на картинку" value={link} required
+                       name="link" placeholder="Ссылка на картинку" value={link || ''} required
                        onChange={handleChangeLink}/>
                 <span className="form__error link-input-error popup__error"></span>
             </label>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 
 import Card from "./Card";
 
@@ -24,11 +24,11 @@ export default function Main(props) {
                 <button onClick={onAddPlace} className="profile__add-button" type="button" aria-label="Добавить карточку"></button>
             </section>
             <section className="elements">
-                {cards.map((item) => {
-                    return (
-                        <Card key={item._id} card={item} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete}/>
+                {cards.map(card =>
+                    (
+                        <Card key={card._id} card={card} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete}/>
                     )
-                })}
+                )}
             </section>
         </main>
     );

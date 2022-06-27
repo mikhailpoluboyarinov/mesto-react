@@ -4,16 +4,18 @@ export class Api {
         this._headers = options.headers;
     }
 
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+}
+
     _getData(suffix) {
         return fetch(this._baseUrl + suffix, {
             headers: this._headers
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }).catch((err) => {
+            .then((res) => this._checkResponse(res)).catch((err) => {
                 console.log(err);
             })
     }
@@ -24,12 +26,7 @@ export class Api {
             headers: this._headers,
             body: JSON.stringify(data)
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }).catch((err) => {
+            .then((res) => this._checkResponse(res)).catch((err) => {
                 console.log(err);
             })
     }
@@ -40,12 +37,7 @@ export class Api {
             headers: this._headers,
             body: JSON.stringify(data)
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }).catch((err) => {
+            .then((res) => this._checkResponse(res)).catch((err) => {
                 console.log(err);
             })
     }
@@ -55,12 +47,7 @@ export class Api {
             method: 'DELETE',
             headers: this._headers
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }).catch((err) => {
+            .then((res) => this._checkResponse(res)).catch((err) => {
                 console.log(err);
             })
     }
@@ -70,12 +57,7 @@ export class Api {
             method: 'PUT',
             headers: this._headers
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }).catch((err) => {
+            .then((res) => this._checkResponse(res)).catch((err) => {
                 console.log(err);
             })
     }

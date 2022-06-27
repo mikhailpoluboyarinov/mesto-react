@@ -4,23 +4,18 @@ import PopupWithForm from "./PopupWithForm";
 
 export function EditAvatarPopup (props) {
     const { isOpen, onClose, onUpdateAvatar } = props;
-    const [avatar, setAvatar] = useState('');
-    const avatarLink = useRef('');
+    const avatarLink = useRef();
 
 
     //Сбрасываю поле ввода
     useEffect(() => {
         if (isOpen) {
-            setAvatar('');
+            avatarLink.current.value = '';
         }
     }, [isOpen]);
 
-    const handleChangeAvatar = (evt) => {
-        setAvatar(evt.target.value);
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault();
+    function handleSubmit(evt) {
+        evt.preventDefault();
 
         onUpdateAvatar({
             avatar: avatarLink.current.value
@@ -38,8 +33,7 @@ export function EditAvatarPopup (props) {
         >
             <label className="form__field">
                 <input className="popup__input form__input form__input_type_link" id="avatar-input" type="url"
-                       name="avatar" placeholder="Ссылка на картинку" value={avatar} ref={avatarLink} required
-                       onChange={handleChangeAvatar} />
+                       name="avatar" placeholder="Ссылка на картинку" ref={avatarLink} required />
                 <span className="form__error avatar-input-error popup__error"></span>
             </label>
         </PopupWithForm>

@@ -43,14 +43,14 @@ export function EditProfilePopup (props) {
         >
             <label className="form__field">
                 <input className="popup__input form__input form__input_type_name" id="name-input" type="text"
-                       name="name" value={name} autoComplete="off" minLength="2" maxLength="40"
+                       name="name" value={name || ''} autoComplete="off" minLength="2" maxLength="40"
                        required onChange={handleChangeName}
                 />
                 <span className="form__error name-input-error popup__error"></span>
             </label>
             <label className="form__field">
                 <input className="popup__input form__input form__input_type_profession" id="profession-input"
-                       type="text" name="profession" autoComplete="off" value={description}
+                       type="text" name="profession" autoComplete="off" value={description || ''}
                        placeholder="Профессия" minLength="2" maxLength="200" required onChange={handleChangeDescription}
                 />
                 <span className="form__error profession-input-error popup__error"></span>
